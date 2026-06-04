@@ -14,3 +14,6 @@ data/*.csv
 
 # VS Code
 .vscode/
+
+# Build artifacts
+*.egg-info/

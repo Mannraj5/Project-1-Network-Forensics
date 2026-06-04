@@ -1,5 +1,5 @@
 [project]
-name = "network_forensics_portfolio"
+name = "network_forensics_analysis"
 version = "0.1.0"
 description = "A NetFlow-based forensic analysis project with anomaly detection, supervised classification, and an interactive SIEM-style dashboard."
 readme = "README.md"

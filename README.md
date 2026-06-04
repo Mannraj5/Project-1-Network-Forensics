@@ -1,6 +1,6 @@
-# Network Forensics Portfolio Project
+# Network Forensics Project
 
-A professional NetFlow-based forensic analysis portfolio project built for scalable threat detection, incident investigation, and reporting.
+A professional NetFlow-based forensic analysis project built for scalable threat detection, incident investigation, and reporting.
 
 ## Project at a Glance
 
@@ -14,7 +14,7 @@ A professional NetFlow-based forensic analysis portfolio project built for scala
 
 This repository demonstrates a full network-forensics workflow using NetFlow-style telemetry. It includes data ingestion, preprocessing, forensic analysis, visualization, machine learning, and an interactive SIEM-style dashboard.
 
-## Portfolio Highlights
+## Project Highlights
 
 - Reproducible Python-based analysis pipeline for flow telemetry
 - Forensic feature engineering and attack pattern detection
@@ -28,7 +28,7 @@ This repository demonstrates a full network-forensics workflow using NetFlow-sty
 - `src/netflow_forensics/` — core Python modules for data loading, preprocessing, analysis, visualization, and reporting
 - `src/main.py` — command-line entrypoint for running the forensic pipeline
 - `src/dashboard.py` — Streamlit application for SIEM-style analysis
-- `docs/` — portfolio report, findings summary, and generated plots
+- `docs/` — report, findings summary, and generated plots
 - `notebooks/` — guided analysis notebook for reproducibility and presentation
 - `tests/` — validation suite for the pipeline
 
@@ -86,7 +86,7 @@ jupyter notebook notebooks/Network_Forensics_Analysis.ipynb
 
 ## Next Steps
 
-Potential portfolio enhancements include:
+Potential enhancements include:
 - expanded dataset support and additional labeled traces
 - integration with enterprise SIEM and alerting platforms
 - richer anomaly scoring and incident classification
