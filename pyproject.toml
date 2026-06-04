@@ -1,0 +1,26 @@
+[project]
+name = "network_forensics_portfolio"
+version = "0.1.0"
+description = "A NetFlow-based forensic analysis project with anomaly detection, supervised classification, and an interactive SIEM-style dashboard."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.25",
+    "matplotlib>=3.7",
+    "seaborn>=0.13.2",
+    "scikit-learn>=1.4",
+    "streamlit>=1.30",
+    "jupyter>=1.0",
+    "notebook>=6.0",
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-q"
+testpaths = ["tests"]
