@@ -1,49 +1,101 @@
-# Network Forensics Portfolio Project Report
+# Network Forensics Project Report
 
-## Title
-Reconstructing Insider Threat and DDoS Activity Using NetFlow-Based Forensic Analysis
+## Executive Summary
 
-## Introduction
-This project demonstrates how flow-level telemetry can be used to reconstruct network attack behaviour without requiring full packet capture. The analysis uses NetFlow-style features to identify suspicious ports, abnormal traffic spikes, high-volume flows, and potential exfiltration activity. The main goal is to show a professional forensic workflow that supports enterprise-level detection, investigation, and reporting.
+This project demonstrates a professional network-forensics workflow using NetFlow-style telemetry. The repository includes a reproducible Python pipeline for flow ingestion, feature engineering, forensic analysis, visualization, and reporting. It also provides a Streamlit SIEM-style dashboard and an exploratory Jupyter notebook to support investigation and presentation.
 
-## Research Objectives
-- Build a reproducible network-forensics pipeline for NetFlow-style telemetry.
-- Identify insider threat and DDoS indicators from flow data.
-- Demonstrate forensic reconstruction using port analysis, flow volume, and time-series behaviour.
-- Produce a clear report and visualization suite suitable for portfolio presentation.
+## Project Goals
 
-## Literature Review
-Flow-based network forensics has become essential for scalable threat detection. Recent research highlights the value of NetFlow and IPFIX telemetry in identifying distributed denial-of-service (DDoS) attacks, reconnaissance scanning, and data exfiltration. For example, work by Moustafa et al. (2023) validates the CIC-IDS-2017 dataset as a benchmark for intrusion detection, while Zimba and Chishimba (2023) show that flow-level analytics can detect DDoS attacks effectively. Flow-based monitoring is widely adopted in enterprise SIEM platforms because it offers a balance between visibility and storage efficiency.
+- Develop a clear and reproducible NetFlow-based forensic analysis pipeline.
+- Detect suspicious activity including DDoS, reconnaissance, outbound data exfiltration, and insider threats.
+- Transform flow telemetry into actionable insights through visual analysis and anomaly detection.
+- Produce a polished report that demonstrates technical competence and investigative reasoning.
 
-## Methodology
-The analysis pipeline includes:
-- Data ingestion: load labeled NetFlow-style CSV files with source/destination IPs, ports, protocols, packet counts, bytes, durations, and traffic labels.
-- Preprocessing: normalize column names, parse timestamps, fill missing values, and engineer derived metrics such as total bytes and total packets.
-- Forensic analysis: compute traffic distribution, suspicious destination ports, high-volume flows, outbound surges, and port scanning indicators.
-- Visualization and reporting: generate charts for port usage, flow count over time, label distribution, and correlation heatmaps. Summarize findings in a clear report for stakeholders.
-- Machine learning: apply unsupervised anomaly detection and supervised classification when labels are available to validate model-based threat detection.
-- Dashboarding: provide an interactive Streamlit SIEM-style dashboard for rapid investigation and anomaly triage.
+## Approach
 
-## Findings
-The forensic analysis emphasizes several key results:
-- Port distribution reveals common service ports (80, 443, 53) alongside suspicious administrative and ephemeral ports that may indicate reconnaissance or lateral movement.
-- Flow count analysis shows rapid spikes consistent with automated DDoS or scanning behaviour.
-- Label distribution often highlights a strong presence of malicious traffic, which confirms the dataset's suitability for forensic reconstruction.
-- High-volume flows are a strong sign of exfiltration or botnet activity.
-- Correlation between packet counts and byte totals confirms that traffic volume metrics are reliable indicators for both benign and malicious events.
+### Data and Ingestion
+The analysis uses NetFlow-style CSV data with key flow fields such as source/destination IP, ports, protocol, packet counts, bytes, flow duration, and traffic labels. The pipeline normalizes input columns, parses timestamps, and ensures numeric consistency for downstream analytics.
+
+### Feature Engineering
+Derived forensic features include:
+- `total_bytes` and `total_packets` for flow volume
+- `byte_rate` and `packet_rate` for traffic intensity
+- `flow_duration` for session timing
+- internal/external host indicators for network boundary analysis
+- port-based risk labels for suspicious destinations
+
+### Forensic Analysis
+Core investigative workflows include:
+- suspicious port identification
+- high-volume flow detection
+- outbound spike and burst analysis
+- port scanner and reconnaissance activity detection
+- correlation analysis across volume and rate metrics
+
+### Machine Learning and Visualization
+The project applies:
+- unsupervised anomaly detection with Isolation Forest to surface unusual flow behaviour
+- supervised Random Forest classification when labels are available
+- dashboards, charts, and visual artifacts to explain findings clearly to stakeholders
+
+## Key Findings
+
+- **Suspicious port activity:** Analysis highlighted both expected service ports and anomalous administrative/ephemeral ports that are commonly associated with scanning and lateral movement.
+- **Traffic spikes:** Time-series flow volume exposed rapid surges consistent with automated scanning or DDoS-style behaviour.
+- **High-volume flows:** Large byte and packet counts identified candidate exfiltration flows and high-impact network events.
+- **Anomaly signals:** Isolation Forest scoring provided a practical way to rank suspicious sessions and support analyst triage.
+- **Classification validation:** Supervised modeling confirmed the value of flow-based features for differentiating benign and malicious traffic when labeled examples are available.
+
+## Technical Architecture
+
+### Pipeline Stages
+1. **Data Ingestion**: CSV-based NetFlow import with timestamp parsing and data normalization
+2. **Preprocessing**: Flow aggregation, feature derivation, and missing-value handling  
+3. **Forensic Analysis**: Port-based risk scoring, volume anomaly detection, and traffic pattern extraction
+4. **Machine Learning**: Isolation Forest for unsupervised anomaly detection; Random Forest for supervised classification when labels exist
+5. **Reporting & Visualization**: Markdown reports, time-series plots, distribution charts, and heatmaps
+6. **Interactive Analysis**: Streamlit dashboard for real-time analyst triage and filtering
+
+### Core Technologies
+- **Data Processing**: pandas, numpy for efficient flow manipulation
+- **ML**: scikit-learn (Isolation Forest, Random Forest, preprocessing)
+- **Visualization**: matplotlib, seaborn, plotly for publication-quality charts
+- **Dashboard**: Streamlit for interactive, no-code analyst interface
+- **Testing**: pytest for pipeline validation and feature coverage
+- **Notebooks**: Jupyter for reproducible exploratory analysis and presentation
+
+## Reproducibility & Validation
+
+All code follows modular, test-driven design principles:
+- Unit tests validate individual components (data loading, feature engineering, model fitting)
+- Integration tests verify end-to-end pipeline correctness
+- Example dataset and expected outputs enable independent reproducibility
+- Full dependency specification in `requirements.txt` and `pyproject.toml`
+
+## Professional Impact
+
+This project is strong because it combines:
+- a modular and reusable Python codebase
+- documented forensic workflows and engineering rationale
+- data-driven results backed by visualizations
+- a practical dashboard for incident investigation
+- a reproducible GitHub repository with quality controls and tests
 
 ## Conclusions
-This portfolio project demonstrates that NetFlow-based forensic analysis can provide actionable insight into insider threat and external attack behaviour. By focusing on flow-level features, the approach supports scalable network monitoring and helps investigators reconstruct incident timelines without deep packet inspection.
 
-## Future Work
-- Add machine learning models for anomaly detection and classification.
-- Integrate the pipeline with SIEM systems or cloud-native flow telemetry.
-- Extend the analysis to include DNS and application-layer metadata when available.
-- Build an interactive dashboard for incident investigation and stakeholder reporting.
+NetFlow-based forensic analysis provides a strong foundation for scalable network threat detection. This project demonstrates that flow telemetry can be used to reconstruct incident behaviour, detect suspicious traffic, and support analyst workflows without packet-level capture.
+
+## Future Enhancements
+
+- integrate additional enterprise telemetry sources such as DNS, HTTP, and cloud flow logs
+- add automated alerting and SIEM rule generation
+- expand dataset support for broader attack scenarios
+- improve model explainability and analyst feedback loops
 
 ## References
-1. Moustafa, N. et al. (2023). CICIDS2017 dataset: A comprehensive benchmark for network intrusion detection. Canadian Institute for Cybersecurity.
-2. Zimba, A. & Chishimba, M. (2023). Detecting DDoS attacks using NetFlow data analytics. International Journal of Information Security.
+
+1. Moustafa, N. et al. (2023). CICIDS2017 dataset: A comprehensive benchmark for network intrusion detection.
+2. Zimba, A. & Chishimba, M. (2023). Detecting DDoS attacks using NetFlow data analytics.
 3. Cisco Systems. (2023). Cisco NetFlow and IPFIX Overview.
-4. Sahu, R. & Kumar, P. (2022). Flow-level telemetry for scalable threat detection in cloud environments. Computers & Security.
-5. Alshamrani, A. et al. (2022). Advanced persistent threats: Techniques, solutions, challenges, and research opportunities. Computers & Security.
+4. Sahu, R. & Kumar, P. (2022). Flow-level telemetry for scalable threat detection in cloud environments.
+5. Alshamrani, A. et al. (2022). Advanced persistent threats: Techniques, solutions, challenges, and research opportunities.
