@@ -1,32 +1,36 @@
 # Network Forensics Portfolio Project
 
-A professional NetFlow-based forensic analysis project built around CIC-IDS-2017-style flow telemetry. This portfolio-ready repository demonstrates data ingestion, feature engineering, forensic analysis, visualization, and reporting for insider threat and DDoS detection using flow-level records.
+A professional NetFlow-based forensic analysis portfolio project built for scalable threat detection, incident investigation, and reporting.
 
-## Project Overview
+## Project at a Glance
 
-This project is designed to support a professional portfolio with:
-- A structured network-forensics analysis pipeline
-- Reproducible data processing and feature engineering
-- Visualizations for suspicious flow detection, port analysis, traffic spikes, and anomaly patterns
-- A polished report with research context, methodology, and forensic outcomes
-- A sample notebook showing exploratory data analysis and results
+- Full end-to-end network forensics pipeline using NetFlow-style flow telemetry
+- Investigative feature engineering, attack detection, and packetless incident reconstruction
+- Unsupervised anomaly detection and supervised classification for threat validation
+- Interactive Streamlit dashboard for SIEM-style analysis and triage
+- Exportable reports, charts, and notebook-based forensic storytelling
 
-## Features
+## Project Summary
 
-- Load NetFlow-style CSV data and normalize records
-- Engineer forensic features such as total bytes, total packets, flow rates, and internal/external host indicators
-- Detect suspicious destination ports, outbound spike events, and port scanning behaviour
-- Unsupervised anomaly detection via Isolation Forest
-- Supervised traffic classification when labels are available
-- Export polished markdown reports and visual artifacts
-- SIEM-style Streamlit dashboard for rapid investigation
+This repository demonstrates a full network-forensics workflow using NetFlow-style telemetry. It includes data ingestion, preprocessing, forensic analysis, visualization, machine learning, and an interactive SIEM-style dashboard.
 
-## Repository Structure
+## Portfolio Highlights
 
-- `src/netflow_forensics/` — Python modules for loading, preprocessing, analysis, visualization, and reporting
-- `data/` — sample dataset placeholder and data preparation helpers
-- `notebooks/` — example Jupyter notebook for forensic analysis
-- `docs/` — formal project report and documentation
+- Reproducible Python-based analysis pipeline for flow telemetry
+- Forensic feature engineering and attack pattern detection
+- Unsupervised anomaly detection and supervised classification
+- Clean, exportable markdown reporting and visual artifacts
+- Interactive Streamlit dashboard for threat triage
+- Example Jupyter notebook for exploratory investigation
+
+## What’s Included
+
+- `src/netflow_forensics/` — core Python modules for data loading, preprocessing, analysis, visualization, and reporting
+- `src/main.py` — command-line entrypoint for running the forensic pipeline
+- `src/dashboard.py` — Streamlit application for SIEM-style analysis
+- `docs/` — portfolio report, findings summary, and generated plots
+- `notebooks/` — guided analysis notebook for reproducibility and presentation
+- `tests/` — validation suite for the pipeline
 
 ## Installation
 
@@ -43,7 +47,7 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-3. Run tests:
+3. Validate the project:
 
 ```powershell
 pytest
@@ -51,38 +55,39 @@ pytest
 
 ## Usage
 
-Run the forensic pipeline on a NetFlow CSV file:
+Run the forensic pipeline and generate a findings report:
 
 ```powershell
 python src\main.py --input data\sample_netflow.csv --output docs\forensic_findings.md
 ```
 
-Generate plot artifacts:
+Create plot artifacts for the report:
 
 ```powershell
 python src\main.py --input data\sample_netflow.csv --output docs\forensic_findings.md --plots docs/plots
 ```
 
-Start the SIEM-style dashboard with Streamlit:
+Launch the SIEM-style dashboard:
 
 ```powershell
 streamlit run src\dashboard.py
 ```
 
-Use the notebook for a guided workflow:
+Open the forensic notebook:
 
 ```powershell
 jupyter notebook notebooks/Network_Forensics_Analysis.ipynb
 ```
 
-## Dataset
+## Notes
 
-The CIC-IDS-2017 dataset is not included in this repository because of size and licensing restrictions. The code is designed to work with NetFlow-style CSV exports from that dataset or similar flow telemetry sources.
+- The included sample data and code are designed for NetFlow-style CSV exports from CIC-IDS-2017 or similar flow telemetry sources.
+- This repository is structured for easy extension into enterprise SIEM workflows, cloud telemetry, and incident response automation.
 
-## Expandability
+## Next Steps
 
-This project is intentionally modular and ready for further enhancements such as:
-- machine learning-based anomaly detection
-- integration with SIEM tools
-- automated incident classification and alerting
-- interactive dashboards
+Potential portfolio enhancements include:
+- expanded dataset support and additional labeled traces
+- integration with enterprise SIEM and alerting platforms
+- richer anomaly scoring and incident classification
+- deployment-ready dashboard packaging
